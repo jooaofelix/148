@@ -11,7 +11,9 @@ export function Marquee({ text, tone = "paper" }: MarqueeProps) {
   return (
     <div
       className={`overflow-hidden border-y py-4 ${
-        tone === "ink" ? "border-ink/15 text-ink" : "border-paper/15 text-paper"
+        tone === "ink"
+          ? "border-ink/15 bg-paper-dim text-ink"
+          : "border-paper/15 bg-ink text-paper"
       }`}
       aria-hidden="true"
     >
