@@ -17,6 +17,7 @@
   --font-sans: var(--font-inter), system-ui, sans-serif;
   --font-blackletter: var(--font-blackletter), serif;
   --font-serif: var(--font-serif), Georgia, serif;
+  --font-impact: var(--font-impact), "Arial Narrow", sans-serif;
 }
 
 @theme inline {
@@ -36,6 +37,7 @@
   --font-sans: var(--font-sans);
   --font-blackletter: var(--font-blackletter);
   --font-serif: var(--font-serif);
+  --font-impact: var(--font-impact);
 
   --animate-fade-up: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
   --animate-fade-in: fade-in 1s ease both;

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Anton, Fraunces, Inter, UnifrakturMaguntia } from "next/font/google";
+import { Anton, Bebas_Neue, Fraunces, Inter, UnifrakturMaguntia } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { Header } from "@/components/Header";
@@ -22,6 +22,13 @@ const anton = Anton({
 
 const blackletter = UnifrakturMaguntia({
   variable: "--font-blackletter",
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const bebas = Bebas_Neue({
+  variable: "--font-impact",
   weight: "400",
   subsets: ["latin"],
   display: "swap",
@@ -75,7 +82,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="pt-BR"
-      className={`${inter.variable} ${anton.variable} ${blackletter.variable} ${fraunces.variable} h-full`}
+      className={`${inter.variable} ${anton.variable} ${blackletter.variable} ${fraunces.variable} ${bebas.variable} h-full`}
     >
       <body className="flex min-h-full flex-col bg-ink text-paper antialiased">
         <Splash />
