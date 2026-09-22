@@ -50,9 +50,6 @@ export const metadata: Metadata = {
     title: "148 — Toda a criação louva",
     description: site.description,
   },
-  icons: {
-    icon: "/favicon.ico",
-  },
   robots: { index: true, follow: true },
 };
 
