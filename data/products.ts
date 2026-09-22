@@ -1,0 +1,137 @@
+import { Product } from "@/lib/types";
+
+/**
+ * Pre-launch catalog. Every piece is `status: "em-breve"` — no prices,
+ * no stock, no sizes exposed. Images point at /public/images/products/
+ * placeholders until official assets are supplied; see that folder's
+ * README for the exact filenames each product expects.
+ */
+export const products: Product[] = [
+  {
+    slug: "148-001-essencial",
+    name: "148 / 001",
+    code: "148 / 001",
+    line: "001",
+    status: "em-breve",
+    tagline: "A forma mais simples da marca.",
+    story:
+      "Uma peça, um símbolo, um nome. Sem ruído — só o essencial que sustenta tudo o que a 148 vai construir depois.",
+    composition: "100% algodão penteado",
+    fit: "Oversized",
+    weight: "220g/m²",
+    images: {
+      front: "/images/products/148-001-essencial-front.webp",
+      back: "/images/products/148-001-essencial-back.webp",
+      details: ["/images/products/148-001-essencial-detail.webp"],
+    },
+    featured: true,
+  },
+  {
+    slug: "bom-pastor",
+    name: "Bom Pastor",
+    code: "148 / ART",
+    line: "art",
+    status: "em-breve",
+    tagline: "Ele conhece as Suas ovelhas.",
+    story:
+      "Uma arte sobre presença. Sobre alguém que fica quando seria mais fácil ir embora.",
+    reference: { citation: "João 10:11" },
+    composition: "100% algodão penteado",
+    fit: "Oversized",
+    weight: "220g/m²",
+    images: {
+      front: "/images/products/bom-pastor-front.webp",
+      back: "/images/products/bom-pastor-back.webp",
+      details: ["/images/products/bom-pastor-detail.webp"],
+    },
+    featured: true,
+  },
+  {
+    slug: "bread-of-life",
+    name: "Bread of Life",
+    code: "148 / ART",
+    line: "art",
+    status: "em-breve",
+    tagline: "O que sacia de verdade.",
+    story:
+      "Sobre fome que comida nenhuma resolve — e sobre o único pão que sustenta de verdade.",
+    reference: { citation: "João 6:35" },
+    composition: "100% algodão penteado",
+    fit: "Oversized",
+    weight: "220g/m²",
+    images: {
+      front: "/images/products/bread-of-life-front.webp",
+      back: "/images/products/bread-of-life-back.webp",
+      details: ["/images/products/bread-of-life-detail.webp"],
+    },
+  },
+  {
+    slug: "exodo-13-21",
+    name: "Êxodo 13:21",
+    code: "148 / ART",
+    line: "art",
+    status: "em-breve",
+    tagline: "Coluna de fogo, coluna de nuvem.",
+    story:
+      "Sobre ser guiado no deserto — de dia por sombra, de noite por luz. Sobre nunca andar sozinho.",
+    reference: { citation: "Êxodo 13:21" },
+    composition: "100% algodão penteado",
+    fit: "Oversized",
+    weight: "220g/m²",
+    images: {
+      front: "/images/products/exodo-13-21-front.webp",
+      back: "/images/products/exodo-13-21-back.webp",
+      details: ["/images/products/exodo-13-21-detail.webp"],
+    },
+  },
+  {
+    slug: "rios-de-misericordia",
+    name: "Rios de Misericórdia",
+    code: "148 / ART",
+    line: "art",
+    status: "em-breve",
+    tagline: "Novas a cada manhã.",
+    story:
+      "Sobre recomeço. Sobre uma misericórdia que não se esgota, por mais fundo que o poço pareça.",
+    reference: { citation: "Lamentações 3:22-23" },
+    composition: "100% algodão penteado",
+    fit: "Oversized",
+    weight: "220g/m²",
+    images: {
+      front: "/images/products/rios-de-misericordia-front.webp",
+      back: "/images/products/rios-de-misericordia-back.webp",
+      details: ["/images/products/rios-de-misericordia-detail.webp"],
+    },
+  },
+  {
+    slug: "romanos-16-20",
+    name: "Romanos 16:20",
+    code: "148 / ART",
+    line: "art",
+    status: "em-breve",
+    tagline: "Debaixo dos seus pés.",
+    story:
+      "Sobre uma guerra que já tem vencedor. Sobre paz que esmaga o que tentou te derrubar.",
+    reference: { citation: "Romanos 16:20" },
+    composition: "100% algodão penteado",
+    fit: "Oversized",
+    weight: "220g/m²",
+    images: {
+      front: "/images/products/romanos-16-20-front.webp",
+      back: "/images/products/romanos-16-20-back.webp",
+      details: ["/images/products/romanos-16-20-detail.webp"],
+    },
+  },
+];
+
+export function getProductBySlug(slug: string): Product | undefined {
+  return products.find((p) => p.slug === slug);
+}
+
+export function getProductsByLine(line: Product["line"]): Product[] {
+  return products.filter((p) => p.line === line);
+}
+
+export function getFeaturedProducts(): Product[] {
+  return products.filter((p) => p.featured);
+}
