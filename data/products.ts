@@ -163,6 +163,24 @@ export const products: Product[] = [
     },
   },
   {
+    slug: "old-men",
+    name: "Old Men",
+    code: "148 / ART",
+    line: "art",
+    status: "em-breve",
+    tagline: "O velho morreu. Quem vive agora não sou mais eu.",
+    story:
+      "Sobre enterrar quem você era. Sobre uma vida que só existe porque a antiga foi crucificada primeiro.",
+    reference: { citation: "Gálatas 2:20" },
+    composition: "100% algodão penteado",
+    fit: "Oversized",
+    weight: "220g/m²",
+    images: {
+      front: "/images/products/old-men-front.webp",
+      back: "/images/products/old-men-back.webp",
+    },
+  },
+  {
     slug: "ouvir-e-obedecer",
     name: "Ouvir e Obedecer",
     code: "148 / ART",
