@@ -8,7 +8,7 @@ export function Manifesto() {
         <span className="font-impact text-center text-6xl uppercase leading-[0.9] tracking-wide sm:text-8xl md:text-9xl">
           Created
           <br />
-          to Praise
+          to Create
         </span>
       </div>
 
