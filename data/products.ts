@@ -21,8 +21,11 @@ export const products: Product[] = [
     weight: "220g/m²",
     images: {
       front: "/images/products/148-001-essencial-front.webp",
-      back: "/images/products/148-001-essencial-back.webp",
-      details: ["/images/products/148-001-essencial-detail.webp"],
+      details: [
+        "/images/products/148-001-essencial-offwhite.webp",
+        "/images/products/148-001-essencial-navy.webp",
+        "/images/products/148-001-essencial-brown.webp",
+      ],
     },
     featured: true,
   },
