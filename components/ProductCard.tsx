@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Product } from "@/lib/types";
 import { SmartImage } from "./SmartImage";
 import { ImageReveal } from "./ImageReveal";
+import { StarMark } from "./icons/StarMark";
 import { ANALYTICS_EVENTS, track } from "@/lib/analytics";
 
 interface ProductCardProps {
@@ -54,6 +55,12 @@ export function ProductCard({ product }: ProductCardProps) {
           <span className="absolute left-3 top-3 bg-ink/80 px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-paper">
             Em breve
           </span>
+          {product.premium && (
+            <span className="absolute right-3 top-3 flex items-center gap-1.5 border border-paper/70 bg-ink/80 px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-paper">
+              <StarMark className="h-2.5 w-2.5" />
+              Premium
+            </span>
+          )}
         </div>
 
         <div className="flex flex-col gap-1">

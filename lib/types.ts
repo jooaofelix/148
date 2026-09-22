@@ -42,6 +42,8 @@ export interface Product {
   /** Price in cents. Not rendered anywhere pre-launch; reserved for the store phase. */
   priceCents?: number;
   featured?: boolean;
+  /** Marks a piece as a premium/limited tier — shown as a badge, no price implied. */
+  premium?: boolean;
 }
 
 export interface Collection {

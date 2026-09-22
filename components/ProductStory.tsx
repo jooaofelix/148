@@ -15,9 +15,17 @@ export function ProductStory({ product }: ProductStoryProps) {
   return (
     <div className="flex flex-col gap-8">
       <div className="flex flex-col gap-2">
-        <span className="text-[10px] font-medium uppercase tracking-[0.3em] text-paper/40">
-          {product.code}
-        </span>
+        <div className="flex items-center gap-3">
+          <span className="text-[10px] font-medium uppercase tracking-[0.3em] text-paper/40">
+            {product.code}
+          </span>
+          {product.premium && (
+            <span className="flex items-center gap-1.5 border border-paper/70 px-2 py-0.5 text-[10px] font-medium uppercase tracking-[0.2em] text-paper">
+              <StarMark className="h-2.5 w-2.5" />
+              Premium
+            </span>
+          )}
+        </div>
         <h1 className="font-display text-4xl uppercase leading-[0.95] tracking-wide text-paper sm:text-5xl">
           {product.name}
         </h1>
