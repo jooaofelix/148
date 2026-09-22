@@ -18,8 +18,7 @@ export const collections: Record<Collection["slug"], Collection> = {
     description:
       "Arte que carrega uma mensagem. Símbolos, ilustração bíblica e referência — para quem olha duas vezes.",
     status: "em-breve",
-    // Reaproveita uma arte forte da linha ART até termos um editorial dedicado da coleção.
-    cover: "/images/products/bom-pastor-back.webp",
+    cover: "/images/collections/art-cover.webp",
   },
 };
 

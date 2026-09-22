@@ -22,9 +22,12 @@ export const products: Product[] = [
     images: {
       front: "/images/products/148-001-essencial-front.webp",
       details: [
+        "/images/products/148-001-essencial-detail.webp",
         "/images/products/148-001-essencial-offwhite.webp",
         "/images/products/148-001-essencial-navy.webp",
         "/images/products/148-001-essencial-brown.webp",
+        "/images/products/148-001-essencial-colorways-1.webp",
+        "/images/products/148-001-essencial-colorways-2.webp",
       ],
     },
     featured: true,
@@ -122,6 +125,7 @@ export const products: Product[] = [
     images: {
       front: "/images/products/pescadores-de-homens-front.webp",
       back: "/images/products/pescadores-de-homens-back.webp",
+      details: ["/images/products/pescadores-de-homens-detail.webp"],
     },
   },
   {
@@ -159,6 +163,7 @@ export const products: Product[] = [
       front: "/images/products/by-his-wounds-front.webp",
       back: "/images/products/by-his-wounds-back.webp",
       details: [
+        "/images/products/by-his-wounds-detail.webp",
         "/images/products/by-his-wounds-brown-front.webp",
         "/images/products/by-his-wounds-grey-front.webp",
         "/images/products/by-his-wounds-offwhite-front.webp",
@@ -181,6 +186,7 @@ export const products: Product[] = [
     images: {
       front: "/images/products/old-men-front.webp",
       back: "/images/products/old-men-back.webp",
+      details: ["/images/products/old-men-detail.webp"],
     },
   },
   {
@@ -253,6 +259,7 @@ export const products: Product[] = [
     images: {
       front: "/images/products/romanos-16-20-front.webp",
       back: "/images/products/romanos-16-20-back.webp",
+      details: ["/images/products/romanos-16-20-detail.webp"],
     },
   },
 ];
