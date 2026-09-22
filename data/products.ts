@@ -94,7 +94,7 @@ export const products: Product[] = [
     tagline: "Nada vai faltar.",
     story:
       "Sobre uma multiplicação que não faz sentido na conta — e sobre um Deus que nunca chega tarde na provisão.",
-    // Nenhuma referência bíblica impressa na arte enviada — confirmar com o time antes de publicar.
+    reference: { citation: "João 6:11" },
     composition: "100% algodão penteado",
     fit: "Oversized",
     weight: "220g/m²",
