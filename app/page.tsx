@@ -8,6 +8,7 @@ import { WaitlistCTA } from "@/components/WaitlistCTA";
 import { ImageReveal } from "@/components/ImageReveal";
 import { collectionList } from "@/data/collections";
 import { getFeaturedProducts } from "@/data/products";
+import { site } from "@/data/site";
 
 export default function Home() {
   const featured = getFeaturedProducts();
@@ -16,7 +17,7 @@ export default function Home() {
     <>
       <Hero />
       <Manifesto />
-      <Marquee text="148 — Toda a criação louva" tone="ink" />
+      <Marquee texts={[...site.marquee]} tone="ink" />
 
       <section className="on-paper bg-paper-dim py-20 text-ink sm:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

@@ -35,6 +35,14 @@ export const site = {
     primary: "Entrar na fila",
     secondary: "Quero ser avisado",
   },
+  marquee: [
+    "148 — Toda a criação louva",
+    "God is love.",
+    "Created to Praise",
+    "For God so loved the world.",
+    "148 — His love endures forever.",
+    "We love because He first loved us.",
+  ],
 } as const;
 
 export const seoKeywords = [
