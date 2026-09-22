@@ -68,6 +68,32 @@ configurados — sem eles, os eventos só ficam no `dataLayer` local, sem erros.
 
 ## Deploy
 
-Projeto Next.js padrão — funciona em qualquer host Node (Vercel, etc). Para Cloudflare, adapte
-via `@cloudflare/next-on-pages` ou OpenNext e troque o storage da waitlist para D1/KV conforme
-acima.
+Projeto Next.js padrão — funciona em qualquer host Node (Vercel, etc).
+
+### Cloudflare (Workers, via OpenNext)
+
+O repo já vem preparado com [`@opennextjs/cloudflare`](https://opennext.js.org/cloudflare)
+(`wrangler.jsonc`, `open-next.config.ts`, scripts `cf:build` / `cf:preview` / `cf:deploy`).
+
+```bash
+npm run cf:build     # builda o Next.js e gera o bundle do Worker em .open-next/
+npm run cf:preview   # testa o build localmente com o runtime da Cloudflare (Miniflare)
+npm run cf:deploy    # builda e publica via wrangler
+```
+
+Se o projeto estiver conectado ao GitHub direto no painel da Cloudflare (Workers & Pages →
+Import a repository), configure:
+
+- **Build command**: `npm run cf:build`
+- **Deploy command**: `npx wrangler deploy`
+
+Variáveis de ambiente a configurar no painel (Settings → Variables), iguais ao `.env.example`:
+`NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_GA_ID`, `NEXT_PUBLIC_META_PIXEL_ID`, `ADMIN_PASSWORD`,
+`ADMIN_SECRET`.
+
+**Importante — fila de espera na Cloudflare:** Workers não tem sistema de arquivos, então
+`lib/waitlist-store.ts` detecta automaticamente o runtime da Cloudflare e usa um armazenamento
+**em memória** nesse caso (só para o build/preview não quebrar) — os cadastros **não persistem**
+entre deploys ou instâncias. Antes de divulgar o link de verdade, troque
+`InMemoryWaitlistStore` por uma implementação com Cloudflare D1 ou KV (a interface
+`WaitlistStore` já está pronta para isso, nenhum outro código muda).
