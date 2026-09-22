@@ -4,6 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { Splash } from "@/components/Splash";
 import { site, seoKeywords } from "@/data/site";
 
 const inter = Inter({
@@ -69,6 +70,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${inter.variable} ${anton.variable} ${blackletter.variable} h-full`}
     >
       <body className="flex min-h-full flex-col bg-ink text-paper antialiased">
+        <Splash />
         <a
           href="#conteudo"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-paper focus:px-4 focus:py-2 focus:text-ink"
