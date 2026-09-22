@@ -171,7 +171,7 @@ export const products: Product[] = [
     tagline: "Antes da chuva, a obediência.",
     story:
       "Sobre construir algo que não faz sentido pra ninguém — só pra quem ouviu a ordem antes da tempestade chegar.",
-    // Nenhuma referência bíblica impressa na arte enviada — confirmar com o time antes de publicar.
+    reference: { citation: "Gênesis 6:22" },
     composition: "100% algodão penteado",
     fit: "Oversized",
     weight: "220g/m²",
