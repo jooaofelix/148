@@ -4,8 +4,12 @@ import { LogoMark } from "./icons/LogoMark";
 export function Manifesto() {
   return (
     <section className="on-paper relative overflow-hidden bg-paper-dim py-28 text-ink sm:py-36">
-      <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-[0.05]">
-        <span className="font-serif text-[14rem] italic leading-none sm:text-[22rem]">148</span>
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-center px-4 opacity-[0.06]">
+        <span className="font-impact text-center text-6xl uppercase leading-[0.9] tracking-wide sm:text-8xl md:text-9xl">
+          Created
+          <br />
+          to Praise
+        </span>
       </div>
 
       <div className="relative mx-auto flex max-w-3xl flex-col items-center px-4 text-center sm:px-6">
