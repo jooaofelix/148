@@ -10,7 +10,7 @@ export function Header() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:h-20 sm:px-6 lg:px-8">
         <Link
           href="/"
-          className="flex h-9 items-center gap-2 py-1.5 text-paper sm:h-11"
+          className="flex h-11 items-center gap-2 py-1 text-paper sm:h-14"
           aria-label="148 — página inicial"
         >
           <LogoMark priority />

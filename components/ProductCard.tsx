@@ -13,6 +13,9 @@ interface ProductCardProps {
 
 export function ProductCard({ product }: ProductCardProps) {
   const [hovered, setHovered] = useState(false);
+  // Prefer the true back shot; if the piece has none (e.g. a clean, unprinted
+  // back), fall back to its first detail shot so the hover still reveals something.
+  const hoverImage = product.images.back ?? product.images.details?.[0];
 
   return (
     <ImageReveal>
@@ -26,7 +29,7 @@ export function ProductCard({ product }: ProductCardProps) {
         <div className="relative aspect-[4/5] overflow-hidden bg-ink-soft">
           <div
             className={`absolute inset-0 transition-opacity duration-500 ${
-              hovered && product.images.back ? "opacity-0" : "opacity-100"
+              hovered && hoverImage ? "opacity-0" : "opacity-100"
             }`}
           >
             <SmartImage
@@ -35,15 +38,15 @@ export function ProductCard({ product }: ProductCardProps) {
               sizes="(min-width: 768px) 33vw, 50vw"
             />
           </div>
-          {product.images.back && (
+          {hoverImage && (
             <div
               className={`absolute inset-0 transition-opacity duration-500 ${
                 hovered ? "opacity-100" : "opacity-0"
               }`}
             >
               <SmartImage
-                src={product.images.back}
-                alt={`${product.name} — costas`}
+                src={hoverImage}
+                alt={`${product.name} — detalhe`}
                 sizes="(min-width: 768px) 33vw, 50vw"
               />
             </div>

@@ -9,7 +9,7 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="flex flex-col gap-10 sm:flex-row sm:items-start sm:justify-between">
           <div className="flex flex-col gap-3">
-            <div className="h-10">
+            <div className="h-12">
               <LogoMark />
             </div>
             <p className="max-w-[16rem] text-sm text-paper/50">
