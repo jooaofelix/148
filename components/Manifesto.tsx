@@ -1,13 +1,17 @@
 import { ImageReveal } from "./ImageReveal";
-import { SmartImage } from "./SmartImage";
+import { LogoMark } from "./icons/LogoMark";
 
 export function Manifesto() {
   return (
-    <section className="on-paper bg-paper-dim py-24 text-ink sm:py-32">
-      <div className="mx-auto flex max-w-3xl flex-col items-center px-4 text-center sm:px-6">
+    <section className="on-paper relative overflow-hidden bg-paper-dim py-28 text-ink sm:py-36">
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-[0.05]">
+        <span className="font-serif text-[14rem] italic leading-none sm:text-[22rem]">148</span>
+      </div>
+
+      <div className="relative mx-auto flex max-w-3xl flex-col items-center px-4 text-center sm:px-6">
         <ImageReveal>
-          <div className="relative aspect-square w-48 overflow-hidden shadow-xl sm:w-64 md:w-72">
-            <SmartImage src="/images/brand/148-mark.webp" alt="148" sizes="288px" tone="ink" />
+          <div className="h-40 drop-shadow-[0_18px_30px_rgba(10,10,10,0.18)] sm:h-56 md:h-64">
+            <LogoMark priority className="invert" />
           </div>
         </ImageReveal>
       </div>
