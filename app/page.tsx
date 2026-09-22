@@ -18,9 +18,9 @@ export default function Home() {
       <Manifesto />
       <Marquee text="148 — Toda a criação louva" tone="ink" />
 
-      <section className="bg-ink py-20 sm:py-28">
+      <section className="on-paper bg-paper-dim py-20 text-ink sm:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionTitle eyebrow="Primeiras linhas" title="O universo 148" className="mb-10 sm:mb-14" />
+          <SectionTitle eyebrow="Primeiras linhas" title="O universo 148" tone="ink" className="mb-10 sm:mb-14" />
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6">
             {collectionList.map((collection) => (
               <CollectionCard key={collection.slug} collection={collection} />
