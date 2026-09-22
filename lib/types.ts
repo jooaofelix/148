@@ -50,6 +50,8 @@ export interface Collection {
   title: string;
   description: string;
   status: ProductStatus;
+  /** Cover photo path, e.g. "/images/collections/001-cover.webp". Falls back to a placeholder if missing. */
+  cover: string;
 }
 
 export interface WaitlistEntry {

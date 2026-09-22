@@ -1,4 +1,4 @@
-import { PlaceholderImage } from "./PlaceholderImage";
+import { SmartImage } from "./SmartImage";
 import { WaitlistCTA } from "./WaitlistCTA";
 import { Logo } from "./icons/Logo";
 
@@ -6,9 +6,11 @@ export function Hero() {
   return (
     <section className="relative flex min-h-[92vh] items-end overflow-hidden bg-ink sm:min-h-screen">
       <div className="absolute inset-0">
-        <PlaceholderImage
-          label="Fotografia editorial — hero-main.webp"
-          className="h-full w-full"
+        <SmartImage
+          src="/images/hero/hero-main.webp"
+          alt="148 — fotografia editorial"
+          sizes="100vw"
+          priority
         />
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-ink/10" />
       </div>

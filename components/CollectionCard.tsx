@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Collection } from "@/lib/types";
-import { PlaceholderImage } from "./PlaceholderImage";
+import { SmartImage } from "./SmartImage";
 import { StarMark } from "./icons/StarMark";
 import { ImageReveal } from "./ImageReveal";
 
@@ -15,9 +15,11 @@ export function CollectionCard({ collection }: CollectionCardProps) {
         href={`/${collection.slug}`}
         className="group relative flex aspect-[3/4] flex-col justify-end overflow-hidden border border-paper/10"
       >
-        <PlaceholderImage
-          label={`Coleção ${collection.name}`}
-          className="absolute inset-0 h-full w-full transition-transform duration-700 ease-out group-hover:scale-105"
+        <SmartImage
+          src={collection.cover}
+          alt={`Coleção ${collection.name}`}
+          className="transition-transform duration-700 ease-out group-hover:scale-105"
+          sizes="(min-width: 640px) 50vw, 100vw"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-transparent" />
 
