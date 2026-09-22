@@ -42,7 +42,6 @@ export const products: Product[] = [
     images: {
       front: "/images/products/bom-pastor-front.webp",
       back: "/images/products/bom-pastor-back.webp",
-      details: ["/images/products/bom-pastor-detail.webp"],
     },
     featured: true,
   },
@@ -62,7 +61,6 @@ export const products: Product[] = [
     images: {
       front: "/images/products/bread-of-life-front.webp",
       back: "/images/products/bread-of-life-back.webp",
-      details: ["/images/products/bread-of-life-detail.webp"],
     },
   },
   {
@@ -81,7 +79,28 @@ export const products: Product[] = [
     images: {
       front: "/images/products/exodo-13-21-front.webp",
       back: "/images/products/exodo-13-21-back.webp",
-      details: ["/images/products/exodo-13-21-detail.webp"],
+      details: [
+        "/images/products/exodo-13-21-offwhite-front.webp",
+        "/images/products/exodo-13-21-offwhite-back.webp",
+      ],
+    },
+  },
+  {
+    slug: "ele-supre",
+    name: "Ele Supre",
+    code: "148 / ART",
+    line: "art",
+    status: "em-breve",
+    tagline: "Nada vai faltar.",
+    story:
+      "Sobre uma multiplicação que não faz sentido na conta — e sobre um Deus que nunca chega tarde na provisão.",
+    // Nenhuma referência bíblica impressa na arte enviada — confirmar com o time antes de publicar.
+    composition: "100% algodão penteado",
+    fit: "Oversized",
+    weight: "220g/m²",
+    images: {
+      front: "/images/products/ele-supre-front.webp",
+      back: "/images/products/ele-supre-back.webp",
     },
   },
   {

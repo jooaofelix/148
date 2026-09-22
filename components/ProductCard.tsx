@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Product } from "@/lib/types";
-import { PlaceholderImage } from "./PlaceholderImage";
+import { SmartImage } from "./SmartImage";
 import { ImageReveal } from "./ImageReveal";
 import { ANALYTICS_EVENTS, track } from "@/lib/analytics";
 
@@ -24,19 +24,29 @@ export function ProductCard({ product }: ProductCardProps) {
         className="group flex flex-col gap-4"
       >
         <div className="relative aspect-[4/5] overflow-hidden bg-ink-soft">
-          <PlaceholderImage
-            label={`${product.name} — frente`}
-            className={`absolute inset-0 h-full w-full transition-opacity duration-500 ${
+          <div
+            className={`absolute inset-0 transition-opacity duration-500 ${
               hovered && product.images.back ? "opacity-0" : "opacity-100"
             }`}
-          />
+          >
+            <SmartImage
+              src={product.images.front}
+              alt={`${product.name} — frente`}
+              sizes="(min-width: 768px) 33vw, 50vw"
+            />
+          </div>
           {product.images.back && (
-            <PlaceholderImage
-              label={`${product.name} — costas`}
-              className={`absolute inset-0 h-full w-full transition-opacity duration-500 ${
+            <div
+              className={`absolute inset-0 transition-opacity duration-500 ${
                 hovered ? "opacity-100" : "opacity-0"
               }`}
-            />
+            >
+              <SmartImage
+                src={product.images.back}
+                alt={`${product.name} — costas`}
+                sizes="(min-width: 768px) 33vw, 50vw"
+              />
+            </div>
           )}
           <span className="absolute left-3 top-3 bg-ink/80 px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-paper">
             Em breve
