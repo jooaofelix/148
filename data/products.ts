@@ -158,7 +158,44 @@ export const products: Product[] = [
       details: [
         "/images/products/by-his-wounds-brown-front.webp",
         "/images/products/by-his-wounds-grey-front.webp",
+        "/images/products/by-his-wounds-offwhite-front.webp",
       ],
+    },
+  },
+  {
+    slug: "ouvir-e-obedecer",
+    name: "Ouvir e Obedecer",
+    code: "148 / ART",
+    line: "art",
+    status: "em-breve",
+    tagline: "Antes da chuva, a obediência.",
+    story:
+      "Sobre construir algo que não faz sentido pra ninguém — só pra quem ouviu a ordem antes da tempestade chegar.",
+    // Nenhuma referência bíblica impressa na arte enviada — confirmar com o time antes de publicar.
+    composition: "100% algodão penteado",
+    fit: "Oversized",
+    weight: "220g/m²",
+    images: {
+      front: "/images/products/ouvir-e-obedecer-front.webp",
+      back: "/images/products/ouvir-e-obedecer-back.webp",
+    },
+  },
+  {
+    slug: "worthy-is-the-lamb",
+    name: "Worthy Is the Lamb",
+    code: "148 / ART",
+    line: "art",
+    status: "em-breve",
+    tagline: "Digno é o Cordeiro.",
+    story:
+      "Sobre o único digno de abrir o que ninguém mais podia. Força que não se parece em nada com o que o mundo chama de força.",
+    reference: { citation: "Apocalipse 5:6" },
+    composition: "100% algodão penteado",
+    fit: "Oversized",
+    weight: "220g/m²",
+    images: {
+      front: "/images/products/worthy-is-the-lamb-front.webp",
+      back: "/images/products/worthy-is-the-lamb-back.webp",
     },
   },
   {
@@ -177,7 +214,6 @@ export const products: Product[] = [
     images: {
       front: "/images/products/rios-de-misericordia-front.webp",
       back: "/images/products/rios-de-misericordia-back.webp",
-      details: ["/images/products/rios-de-misericordia-detail.webp"],
     },
   },
   {
@@ -196,7 +232,6 @@ export const products: Product[] = [
     images: {
       front: "/images/products/romanos-16-20-front.webp",
       back: "/images/products/romanos-16-20-back.webp",
-      details: ["/images/products/romanos-16-20-detail.webp"],
     },
   },
 ];
