@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { site } from "@/data/site";
-import { Logo } from "./icons/Logo";
+import { LogoMark } from "./icons/LogoMark";
 import { StarMark } from "./icons/StarMark";
 import { MobileMenu } from "./MobileMenu";
 
@@ -10,10 +10,10 @@ export function Header() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:h-20 sm:px-6 lg:px-8">
         <Link
           href="/"
-          className="flex items-center gap-2 text-paper"
+          className="flex h-9 items-center gap-2 py-1.5 text-paper sm:h-11"
           aria-label="148 — página inicial"
         >
-          <Logo className="text-2xl sm:text-3xl" />
+          <LogoMark priority />
         </Link>
 
         <nav
