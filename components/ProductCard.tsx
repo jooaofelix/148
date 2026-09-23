@@ -21,10 +21,11 @@ export function ProductCard({ product }: ProductCardProps) {
   const wasHolding = useRef(false);
 
   const colorways = product.colorways;
-  const activeFront = colorways?.[colorIndex]?.image ?? product.images.front;
-  // Prefer the true back shot; if the piece has none (e.g. a clean, unprinted
-  // back), fall back to its first detail shot so the hover still reveals something.
-  const hoverImage = product.images.back ?? product.images.details?.[0];
+  const activeColorway = colorways?.[colorIndex];
+  const activeFront = activeColorway?.image ?? product.images.front;
+  // Prefer the selected colorway's own back shot, then the product's default
+  // back, then its first detail shot, so the hover still reveals something.
+  const hoverImage = activeColorway?.back ?? product.images.back ?? product.images.details?.[0];
 
   function clearHoldTimer() {
     if (holdTimer.current) {

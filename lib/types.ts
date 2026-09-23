@@ -31,6 +31,8 @@ export interface ProductColorway {
   hex: string;
   /** Front photo for this colorway, shown on the card when selected. */
   image: string;
+  /** Back photo for this colorway, used for the card's hover/hold reveal when present. */
+  back?: string;
 }
 
 export interface Product {

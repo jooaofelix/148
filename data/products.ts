@@ -96,6 +96,20 @@ export const products: Product[] = [
         "/images/products/exodo-13-21-offwhite-back.webp",
       ],
     },
+    colorways: [
+      {
+        name: "Preto",
+        hex: "#1c1c1c",
+        image: "/images/products/exodo-13-21-front.webp",
+        back: "/images/products/exodo-13-21-back.webp",
+      },
+      {
+        name: "Off-white",
+        hex: "#e7e1cf",
+        image: "/images/products/exodo-13-21-offwhite-front.webp",
+        back: "/images/products/exodo-13-21-offwhite-back.webp",
+      },
+    ],
   },
   {
     slug: "ele-supre",
@@ -176,10 +190,30 @@ export const products: Product[] = [
       ],
     },
     colorways: [
-      { name: "Navy", hex: "#16213f", image: "/images/products/by-his-wounds-front.webp" },
-      { name: "Marrom", hex: "#6f4e30", image: "/images/products/by-his-wounds-brown-front.webp" },
-      { name: "Cinza", hex: "#a3a3a0", image: "/images/products/by-his-wounds-grey-front.webp" },
-      { name: "Off-white", hex: "#e7e1cf", image: "/images/products/by-his-wounds-offwhite-front.webp" },
+      {
+        name: "Navy",
+        hex: "#16213f",
+        image: "/images/products/by-his-wounds-front.webp",
+        back: "/images/products/by-his-wounds-back.webp",
+      },
+      {
+        name: "Marrom",
+        hex: "#6f4e30",
+        image: "/images/products/by-his-wounds-brown-front.webp",
+        back: "/images/products/by-his-wounds-brown-back.webp",
+      },
+      {
+        name: "Cinza",
+        hex: "#a3a3a0",
+        image: "/images/products/by-his-wounds-grey-front.webp",
+        back: "/images/products/by-his-wounds-grey-back.webp",
+      },
+      {
+        name: "Off-white",
+        hex: "#e7e1cf",
+        image: "/images/products/by-his-wounds-offwhite-front.webp",
+        back: "/images/products/by-his-wounds-offwhite-back.webp",
+      },
     ],
   },
   {
