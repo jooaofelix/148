@@ -15,10 +15,12 @@ export function Hero() {
       </div>
 
       <div className="relative flex w-full flex-col gap-6 px-4 pb-14 sm:px-6 sm:pb-20 lg:px-8">
-        <h1 className="animate-fade-up font-impact text-6xl uppercase leading-[0.9] tracking-wide text-paper sm:text-8xl md:text-9xl">
-          Created
+        <h1 className="animate-fade-up font-impact text-5xl uppercase leading-[0.95] tracking-wide text-paper sm:text-7xl md:text-8xl">
+          Algo novo
           <br />
-          to Praise.
+          está surgindo.
+          <br />
+          Vocês não vêem?
         </h1>
 
         <div className="flex flex-col items-start gap-4 animate-fade-up" style={{ animationDelay: "220ms" }}>
