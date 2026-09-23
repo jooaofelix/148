@@ -4,7 +4,7 @@ import { SectionTitle } from "@/components/SectionTitle";
 import { ProductCard } from "@/components/ProductCard";
 import { CollectionCard } from "@/components/CollectionCard";
 import { WaitlistCTA } from "@/components/WaitlistCTA";
-import { PlaceholderImage } from "@/components/PlaceholderImage";
+import { SmartImage } from "@/components/SmartImage";
 import { StarMark } from "@/components/icons/StarMark";
 import { collectionList } from "@/data/collections";
 import { products } from "@/data/products";
@@ -18,7 +18,7 @@ export default function DropPage() {
   return (
     <>
       <section className="relative flex min-h-[55vh] flex-col justify-end overflow-hidden bg-ink sm:min-h-[70vh]">
-        <PlaceholderImage label="Primeiro drop — editorial" className="absolute inset-0 h-full w-full" />
+        <SmartImage src="/images/drop/drop-editorial.webp" alt="Primeiro drop — editorial" sizes="100vw" priority />
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/50 to-ink/10" />
         <div className="relative flex flex-col gap-4 px-4 pb-14 sm:px-6 sm:pb-20 lg:px-8">
           <span className="flex items-center gap-2 text-xs font-medium uppercase tracking-[0.3em] text-paper/50">
