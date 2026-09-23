@@ -24,6 +24,15 @@ export interface ProductImages {
   details?: string[];
 }
 
+export interface ProductColorway {
+  /** Color label, e.g. "Preto" */
+  name: string;
+  /** Swatch fill color, e.g. "#141414" */
+  hex: string;
+  /** Front photo for this colorway, shown on the card when selected. */
+  image: string;
+}
+
 export interface Product {
   slug: string;
   name: string;
@@ -38,6 +47,8 @@ export interface Product {
   fit?: string;
   weight?: string;
   images: ProductImages;
+  /** Alternate colorways, selectable on the product card before clicking through. */
+  colorways?: ProductColorway[];
   sizes?: Size[];
   /** Price in cents. Not rendered anywhere pre-launch; reserved for the store phase. */
   priceCents?: number;

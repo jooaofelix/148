@@ -30,6 +30,12 @@ export const products: Product[] = [
         "/images/products/148-001-essencial-colorways-2.webp",
       ],
     },
+    colorways: [
+      { name: "Preto", hex: "#141414", image: "/images/products/148-001-essencial-front.webp" },
+      { name: "Off-white", hex: "#e7e1cf", image: "/images/products/148-001-essencial-offwhite.webp" },
+      { name: "Navy", hex: "#16213f", image: "/images/products/148-001-essencial-navy.webp" },
+      { name: "Marrom", hex: "#6f4e30", image: "/images/products/148-001-essencial-brown.webp" },
+    ],
     featured: true,
   },
   {
@@ -169,6 +175,12 @@ export const products: Product[] = [
         "/images/products/by-his-wounds-offwhite-front.webp",
       ],
     },
+    colorways: [
+      { name: "Navy", hex: "#16213f", image: "/images/products/by-his-wounds-front.webp" },
+      { name: "Marrom", hex: "#6f4e30", image: "/images/products/by-his-wounds-brown-front.webp" },
+      { name: "Cinza", hex: "#a3a3a0", image: "/images/products/by-his-wounds-grey-front.webp" },
+      { name: "Off-white", hex: "#e7e1cf", image: "/images/products/by-his-wounds-offwhite-front.webp" },
+    ],
   },
   {
     slug: "old-men",
