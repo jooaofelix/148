@@ -8,8 +8,7 @@ export const collections: Record<Collection["slug"], Collection> = {
     description:
       "A forma mais simples da marca. Essencial, limpa, reconhecível — a peça que carrega a 148 sem levantar a voz.",
     status: "em-breve",
-    // Reaproveita a foto real da 001 até termos um editorial dedicado da coleção.
-    cover: "/images/products/148-001-essencial-front.webp",
+    cover: "/images/collections/001-editorial.webp",
   },
   art: {
     slug: "art",

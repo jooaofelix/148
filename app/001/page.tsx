@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { SectionTitle } from "@/components/SectionTitle";
 import { ProductCard } from "@/components/ProductCard";
 import { WaitlistCTA } from "@/components/WaitlistCTA";
-import { PlaceholderImage } from "@/components/PlaceholderImage";
+import { SmartImage } from "@/components/SmartImage";
 import { CollectionViewTracker } from "@/components/CollectionViewTracker";
 import { collections } from "@/data/collections";
 import { getProductsByLine } from "@/data/products";
@@ -21,7 +21,7 @@ export default function Linha001Page() {
     <>
       <CollectionViewTracker collection="001" />
       <section className="relative flex min-h-[60vh] flex-col justify-end overflow-hidden bg-ink sm:min-h-[75vh]">
-        <PlaceholderImage label="148 / 001 — editorial" className="absolute inset-0 h-full w-full" />
+        <SmartImage src={collection.cover} alt="148 / 001 — editorial" sizes="100vw" priority />
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/50 to-ink/10" />
         <div className="relative flex flex-col gap-4 px-4 pb-14 sm:px-6 sm:pb-20 lg:px-8">
           <span className="text-xs font-medium uppercase tracking-[0.3em] text-paper/50">
