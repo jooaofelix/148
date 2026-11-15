@@ -8,12 +8,11 @@ import { UpcomingRack } from "@/components/UpcomingRack";
 import { WaitlistCTA } from "@/components/WaitlistCTA";
 import { ImageReveal } from "@/components/ImageReveal";
 import { collectionList } from "@/data/collections";
-import { getFeaturedProducts, getProductsByLine } from "@/data/products";
+import { getFeaturedProducts, products } from "@/data/products";
 import { site } from "@/data/site";
 
 export default function Home() {
   const featured = getFeaturedProducts();
-  const artPieces = getProductsByLine("art");
 
   return (
     <>
@@ -45,8 +44,8 @@ export default function Home() {
 
       <section className="bg-ink pb-20 sm:pb-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionTitle eyebrow="Linha ART" title="Novidades chegando" className="mb-10 sm:mb-14" />
-          <UpcomingRack products={artPieces} />
+          <SectionTitle eyebrow="Todas as peças" title="Novidades chegando" className="mb-10 sm:mb-14" />
+          <UpcomingRack products={products} />
         </div>
       </section>
 
