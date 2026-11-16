@@ -1,0 +1,539 @@
+/*
+ * Varal 148 — instalação de roupas suspensas.
+ * Palco escuro (tinta), um feixe de luz no centro onde a peça em destaque
+ * para, barra de aço escovado presa ao teto por dois cabos, cabides de metal.
+ * Tudo que se move usa só transform/opacity.
+ */
+
+.root {
+  position: relative;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  isolation: isolate;
+}
+
+/* ---------- moldura: prende na tela (desktop) ou flui (toque) ---------- */
+.sticky {
+  position: relative;
+}
+.root[data-mode="pin"] .sticky {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+}
+.frame {
+  display: flex;
+  flex-direction: column;
+  padding-block: 5rem 3.5rem;
+}
+.root[data-mode="pin"] .frame {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  height: 100%;
+  padding-block: 6.5rem 0; /* 5rem do header fixo do site + respiro */
+}
+
+.head,
+.info {
+  width: min(80rem, 100%);
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+@media (min-width: 640px) {
+  .head,
+  .info {
+    padding-inline: 1.5rem;
+  }
+}
+@media (min-width: 1024px) {
+  .head,
+  .info {
+    padding-inline: 2rem;
+  }
+}
+
+/* ---------- título ---------- */
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  position: relative;
+  z-index: 2;
+}
+.titles {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: rgb(244 242 236 / 0.5);
+}
+.title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 5vw, 3.75rem);
+  line-height: 0.95;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+.hint {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0 0 0.35rem;
+  font-size: 0.625rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: rgb(244 242 236 / 0.5);
+}
+.hintStar {
+  width: 0.7rem;
+  height: 0.7rem;
+  color: var(--color-paper);
+  animation: varal-spark 2.4s ease-in-out infinite;
+}
+
+/* ---------- palco ---------- */
+.stage {
+  position: relative;
+  margin-top: 1.5rem;
+}
+.root[data-mode="pin"] .stage {
+  min-height: 0;
+  overflow: hidden;
+  margin-top: 0.5rem;
+}
+.root:not([data-mode="pin"]) .stage {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.root:not([data-mode="pin"]) .stage::-webkit-scrollbar {
+  display: none;
+}
+
+/* feixe de luz onde a peça em destaque para */
+.spot {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 22rem 70% at 50% 42%, rgb(244 242 236 / 0.12), transparent 72%);
+}
+.root:not([data-mode="pin"]) .spot {
+  display: none;
+}
+
+/* "148" gigante em contorno, ao fundo, com parallax */
+.ghost {
+  position: absolute;
+  top: 6%;
+  left: 8vw;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+  font-family: var(--font-display);
+  font-size: clamp(14rem, 46vh, 34rem);
+  line-height: 0.8;
+  color: transparent;
+  -webkit-text-stroke: 1px rgb(244 242 236 / 0.06);
+  will-change: transform;
+}
+.root:not([data-mode="pin"]) .ghost {
+  display: none;
+}
+
+/* ---------- trilho com as peças ---------- */
+.track {
+  position: relative;
+  width: max-content;
+  height: calc(var(--rail-top) + var(--item-h) + 1.5rem);
+}
+.root[data-mode="pin"] .track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  will-change: transform;
+}
+
+/* barra de aço escovado */
+.rail {
+  position: absolute;
+  top: var(--rail-top);
+  left: calc(var(--pad) - var(--w) * 0.55);
+  right: calc(var(--pad) - var(--w) * 0.55);
+  height: 6px;
+  border-radius: 3px;
+  background:
+    linear-gradient(180deg, #f1eee4 0%, #b8b5ac 38%, #6f6c66 70%, #3d3c38 100%);
+  box-shadow:
+    0 10px 18px rgb(0 0 0 / 0.55),
+    0 1px 0 rgb(255 255 255 / 0.08) inset;
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.root[data-revealed] .rail {
+  transform: scaleX(1);
+}
+/* cabos que prendem a barra ao teto */
+.cable {
+  position: absolute;
+  bottom: 100%;
+  width: 1px;
+  height: 40vh;
+  background: linear-gradient(180deg, transparent, rgb(244 242 236 / 0.3));
+}
+.cable:first-child {
+  left: calc(var(--w) * 0.35);
+}
+.cable:last-child {
+  right: calc(var(--w) * 0.35);
+}
+
+.list {
+  position: relative;
+  display: flex;
+  gap: var(--gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  top: calc(var(--rail-top) + 3px - var(--hook));
+}
+
+.item {
+  position: relative;
+  flex: none;
+  width: var(--w);
+  height: var(--item-h);
+  scroll-snap-align: center;
+}
+
+.piece {
+  position: absolute;
+  inset: 0 0 4rem;
+  display: block;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  /* entrada: as peças descem até o varal, uma de cada vez */
+  opacity: 0;
+  transform: translate3d(0, -2.5rem, 0);
+  transition:
+    opacity 0.9s ease,
+    transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(0.35s + var(--i) * 70ms);
+}
+.root[data-revealed] .piece {
+  opacity: 1;
+  transform: none;
+}
+.piece:focus-visible {
+  outline: 1px solid var(--color-paper);
+  outline-offset: 0.5rem;
+}
+
+/* estado da peça: descanso / em foco / apagada / escolhida */
+.figure {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% var(--hook);
+  transition:
+    transform 0.8s cubic-bezier(0.2, 0.9, 0.2, 1),
+    opacity 0.55s ease;
+}
+.item[data-state="rest"] .figure {
+  opacity: 0.6;
+}
+.item[data-state="focus"] .figure {
+  opacity: 1;
+  transform: scale(1.045);
+}
+.item[data-state="dim"] .figure {
+  opacity: 0.26;
+  transform: scale(0.97);
+}
+.item[data-state="picked"] .figure {
+  opacity: 1;
+  transform: scale(1.11);
+}
+
+.swing {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% var(--hook);
+  will-change: transform;
+}
+.hanger {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: var(--hanger-w);
+  height: var(--hanger-h);
+  transform: translateX(-50%);
+  overflow: visible;
+}
+.cloth {
+  position: absolute;
+  left: 0;
+  width: var(--w);
+  z-index: 1;
+  transform-origin: 50% 0;
+  will-change: transform;
+}
+.photo {
+  position: absolute;
+  filter: drop-shadow(0 22px 26px rgb(0 0 0 / 0.6));
+}
+.photo img {
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* nome embaixo de cada peça */
+.caption {
+  position: absolute;
+  inset: auto calc(var(--gap) * -0.45) 0;
+  height: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.3rem;
+  padding-top: 0.6rem;
+  text-align: center;
+  pointer-events: none;
+  opacity: 0.38;
+  transition: opacity 0.5s ease;
+}
+.item[data-active] .caption,
+.item[data-state="focus"] .caption {
+  opacity: 1;
+}
+/* escolhida: a peça cresce e o nome já está na ficha abaixo */
+.item[data-state="picked"] .caption {
+  opacity: 0;
+}
+.captionCode {
+  font-size: 0.5625rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  color: rgb(244 242 236 / 0.55);
+}
+.captionName {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+/* ---------- ficha da peça em destaque ---------- */
+.info {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem 2.5rem;
+  padding-block: 1.25rem 2rem;
+  border-top: 1px solid var(--color-line);
+}
+.root:not([data-mode="pin"]) .info {
+  margin-top: 1.5rem;
+}
+.detail {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  min-width: 0;
+}
+.counter {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  padding-top: 0.15rem;
+  white-space: nowrap;
+}
+.counter i {
+  font-style: normal;
+  opacity: 0.35;
+}
+.detailText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 0;
+  animation: varal-fade 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.code {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.625rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: rgb(244 242 236 / 0.5);
+}
+.status,
+.price {
+  font-weight: 500;
+  color: var(--color-paper);
+  border: 1px solid rgb(244 242 236 / 0.3);
+  padding: 0.2rem 0.45rem;
+  letter-spacing: 0.2em;
+}
+.name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 3.2vw, 2.9rem);
+  line-height: 0.95;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+.reference {
+  margin: 0.1rem 0 0;
+  font-family: var(--font-blackletter);
+  font-size: 1.15rem;
+  color: rgb(244 242 236 / 0.75);
+}
+.tagline {
+  margin: 0;
+  max-width: 34ch;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: rgb(244 242 236 / 0.6);
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.25rem;
+}
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  height: 2.75rem;
+  padding: 0 1.15rem;
+  border: 1px solid var(--color-paper);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+}
+.cta:hover {
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+.nav {
+  display: flex;
+  gap: 0.5rem;
+}
+.arrow {
+  width: 2.75rem;
+  height: 2.75rem;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgb(244 242 236 / 0.25);
+  background: transparent;
+  color: var(--color-paper);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+.arrow:hover:not(:disabled) {
+  border-color: var(--color-paper);
+}
+.arrow:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+.progress {
+  position: relative;
+  width: 8.5rem;
+  height: 1px;
+  background: rgb(244 242 236 / 0.15);
+  overflow: hidden;
+}
+.progress span {
+  position: absolute;
+  inset: 0;
+  background: var(--color-paper);
+  transform-origin: left center;
+  transform: scaleX(0);
+}
+
+@media (max-width: 639px) {
+  .info {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .controls {
+    justify-content: space-between;
+  }
+  .progress {
+    order: 3;
+    width: 100%;
+  }
+}
+
+@keyframes varal-fade {
+  from {
+    opacity: 0;
+    transform: translateY(0.6rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes varal-spark {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.85) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1) rotate(45deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .piece,
+  .rail {
+    transition: none;
+  }
+  .piece {
+    opacity: 1;
+    transform: none;
+  }
+  .rail {
+    transform: none;
+  }
+}
