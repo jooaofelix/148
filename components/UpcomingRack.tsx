@@ -36,40 +36,45 @@ function Hanger({ className = "", style }: { className?: string; style?: CSSProp
 
 interface RackItemProps {
   product: Product;
-  swayDelay: string;
+  flipDelay: string;
 }
 
-/** One hanging piece — hovering crossfades to the back/detail shot, same trick as the product cards. */
-function RackItem({ product, swayDelay }: RackItemProps) {
-  const [hovered, setHovered] = useState(false);
-  // Rest state leads with the striking back print (the actual sales pitch);
-  // hovering flips to the front, mirroring the product cards but reversed —
-  // here the back is the "default" and the front is the reveal.
-  const hasBack = Boolean(product.images.back);
-  const primaryImage = product.images.back ?? product.images.front;
-  const hoverImage = hasBack ? product.images.front : product.images.details?.[0];
+/**
+ * One hanging piece. When the piece has a back print, the garment itself
+ * spins on a real 3D Y-axis — front, then back, then around again — instead
+ * of a flat opacity crossfade. Hovering pauses the spin so it can be read.
+ * Pieces with no back shot just hang still.
+ */
+function RackItem({ product, flipDelay }: RackItemProps) {
+  const canFlip = Boolean(product.images.back);
 
   return (
-    <div
-      className="w-full shrink-0 origin-top animate-hanger-sway"
-      style={{ width: ITEM_WIDTH, animationDelay: swayDelay }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
+    <div className="w-full shrink-0" style={{ width: ITEM_WIDTH }}>
       <Hanger
-        className="mx-auto text-paper/60"
+        className="mx-auto animate-hanger-sway text-paper/60"
         style={{ height: HANGER_HEIGHT, width: HANGER_HEIGHT * 1.4 }}
       />
-      <div className="relative aspect-[4/5] overflow-hidden bg-ink-soft" style={{ marginTop: -IMAGE_OVERLAP }}>
-        <div className={`absolute inset-0 transition-opacity duration-500 ${hovered && hoverImage ? "opacity-0" : "opacity-100"}`}>
-          <SmartImage src={primaryImage} alt={product.name} sizes={`${ITEM_WIDTH}px`} />
-        </div>
-        {hoverImage && (
-          <div className={`absolute inset-0 transition-opacity duration-500 ${hovered ? "opacity-100" : "opacity-0"}`}>
-            <SmartImage src={hoverImage} alt={`${product.name} — detalhe`} sizes={`${ITEM_WIDTH}px`} />
+      <div
+        className="relative aspect-[4/5] bg-ink-soft"
+        style={{ marginTop: -IMAGE_OVERLAP, perspective: "1400px" }}
+      >
+        <div
+          className={`absolute inset-0 ${canFlip ? "animate-shirt-flip hover:[animation-play-state:paused]" : ""}`}
+          style={{ transformStyle: "preserve-3d", animationDelay: canFlip ? flipDelay : undefined }}
+        >
+          <div className="absolute inset-0 overflow-hidden" style={{ backfaceVisibility: "hidden" }}>
+            <SmartImage src={product.images.front} alt={`${product.name} — frente`} sizes={`${ITEM_WIDTH}px`} />
           </div>
-        )}
-        <span className="absolute left-2 top-2 bg-ink/80 px-2 py-1 text-[9px] font-medium uppercase tracking-[0.2em] text-paper">
+          {canFlip && (
+            <div
+              className="absolute inset-0 overflow-hidden"
+              style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
+            >
+              <SmartImage src={product.images.back!} alt={`${product.name} — verso`} sizes={`${ITEM_WIDTH}px`} />
+            </div>
+          )}
+        </div>
+        <span className="pointer-events-none absolute left-2 top-2 z-10 bg-ink/80 px-2 py-1 text-[9px] font-medium uppercase tracking-[0.2em] text-paper">
           Em breve
         </span>
       </div>
@@ -80,12 +85,11 @@ function RackItem({ product, swayDelay }: RackItemProps) {
 /**
  * Auto-advancing "rack" of upcoming pieces: real hangers glide along a
  * stationary rail one at a time, a highlight frame tracks the centered
- * piece, and hovering any piece flips it to its back/detail shot — the
- * same reveal the product cards use. Name + reference crossfade below in
- * sync with the active piece. Loops by rendering the list `COPIES` times
- * and snapping (transition disabled for one frame) back to the middle copy
- * once the lead copy is exhausted — the seam is invisible since every copy
- * is identical.
+ * piece, and each garment spins on its own 3D axis to show front and back.
+ * Name + reference crossfade below in sync with the active piece. Loops by
+ * rendering the list `COPIES` times and snapping (transition disabled for
+ * one frame) back to the middle copy once the lead copy is exhausted — the
+ * seam is invisible since every copy is identical.
  */
 export function UpcomingRack({ products }: UpcomingRackProps) {
   const n = products.length;
@@ -166,7 +170,7 @@ export function UpcomingRack({ products }: UpcomingRackProps) {
           {Array.from({ length: COPIES }, () => products)
             .flat()
             .map((product, i) => (
-              <RackItem key={`${product.slug}-${i}`} product={product} swayDelay={`${(i % 5) * -0.7}s`} />
+              <RackItem key={`${product.slug}-${i}`} product={product} flipDelay={`${(i % 5) * -1.3}s`} />
             ))}
         </div>
       </div>
