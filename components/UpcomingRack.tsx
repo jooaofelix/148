@@ -41,44 +41,20 @@ function Hanger({ className = "", style }: { className?: string; style?: CSSProp
 
 interface RackItemProps {
   product: Product;
-  flipDelay: string;
 }
 
-/**
- * One hanging piece. When the piece has a back print, the garment itself
- * spins on a real 3D Y-axis — front, then back, then around again — instead
- * of a flat opacity crossfade. Hovering pauses the spin so it can be read.
- * Pieces with no back shot just hang still.
- */
-function RackItem({ product, flipDelay }: RackItemProps) {
-  const canFlip = Boolean(product.images.back);
+/** One hanging piece — a single still cutout (the back print when there is one). Nothing on it moves. */
+function RackItem({ product }: RackItemProps) {
+  const image = product.images.back ?? product.images.front;
 
   return (
     <div className="w-full shrink-0" style={{ width: ITEM_WIDTH }}>
-      <Hanger
-        className="mx-auto animate-hanger-sway text-paper/60"
-        style={{ height: HANGER_HEIGHT, width: HANGER_HEIGHT * 1.4 }}
-      />
+      <Hanger className="mx-auto text-paper/60" style={{ height: HANGER_HEIGHT, width: HANGER_HEIGHT * 1.4 }} />
       <div
-        className="relative aspect-[4/5]"
-        style={{ marginTop: -IMAGE_OVERLAP, perspective: "1400px" }}
+        className="relative aspect-[4/5] drop-shadow-[0_12px_28px_rgba(0,0,0,0.55)]"
+        style={{ marginTop: -IMAGE_OVERLAP }}
       >
-        <div
-          className={`absolute inset-0 drop-shadow-[0_12px_28px_rgba(0,0,0,0.55)] ${canFlip ? "animate-shirt-flip hover:[animation-play-state:paused]" : ""}`}
-          style={{ transformStyle: "preserve-3d", animationDelay: canFlip ? flipDelay : undefined }}
-        >
-          <div className="absolute inset-0" style={{ backfaceVisibility: "hidden" }}>
-            <SmartImage src={cutout(product.images.front)} alt={`${product.name} — frente`} sizes={`${ITEM_WIDTH}px`} fit="contain" />
-          </div>
-          {canFlip && (
-            <div
-              className="absolute inset-0"
-              style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
-            >
-              <SmartImage src={cutout(product.images.back!)} alt={`${product.name} — verso`} sizes={`${ITEM_WIDTH}px`} fit="contain" />
-            </div>
-          )}
-        </div>
+        <SmartImage src={cutout(image)} alt={product.name} sizes={`${ITEM_WIDTH}px`} fit="contain" />
         <span className="pointer-events-none absolute left-2 top-2 z-10 bg-ink/80 px-2 py-1 text-[9px] font-medium uppercase tracking-[0.2em] text-paper">
           Em breve
         </span>
@@ -90,11 +66,12 @@ function RackItem({ product, flipDelay }: RackItemProps) {
 /**
  * Auto-advancing "rack" of upcoming pieces: real hangers glide along a
  * stationary rail one at a time, a highlight frame tracks the centered
- * piece, and each garment spins on its own 3D axis to show front and back.
- * Name + reference crossfade below in sync with the active piece. Loops by
- * rendering the list `COPIES` times and snapping (transition disabled for
- * one frame) back to the middle copy once the lead copy is exhausted — the
- * seam is invisible since every copy is identical.
+ * piece, and its name + reference crossfade below in sync — mirroring the
+ * reference clip, where the garments themselves never move, only the
+ * tracking box and the rail do. Loops by rendering the list `COPIES` times
+ * and snapping (transition disabled for one frame) back to the middle copy
+ * once the lead copy is exhausted — the seam is invisible since every copy
+ * is identical.
  */
 export function UpcomingRack({ products }: UpcomingRackProps) {
   const n = products.length;
@@ -175,7 +152,7 @@ export function UpcomingRack({ products }: UpcomingRackProps) {
           {Array.from({ length: COPIES }, () => products)
             .flat()
             .map((product, i) => (
-              <RackItem key={`${product.slug}-${i}`} product={product} flipDelay={`${(i % 5) * -1.3}s`} />
+              <RackItem key={`${product.slug}-${i}`} product={product} />
             ))}
         </div>
       </div>

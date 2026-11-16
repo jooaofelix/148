@@ -45,8 +45,6 @@
   --animate-fade-in: fade-in 1s ease both;
   --animate-spark: spark 2.4s ease-in-out infinite;
   --animate-marquee: marquee 55s linear infinite;
-  --animate-hanger-sway: hanger-sway 4.5s ease-in-out infinite;
-  --animate-shirt-flip: shirt-flip 7s ease-in-out infinite;
 }
 
 @keyframes fade-up {
@@ -87,31 +85,6 @@
   }
   to {
     transform: translateX(-50%);
-  }
-}
-
-@keyframes hanger-sway {
-  0%,
-  100% {
-    transform: rotate(-1.4deg);
-  }
-  50% {
-    transform: rotate(1.4deg);
-  }
-}
-
-@keyframes shirt-flip {
-  0%,
-  30% {
-    transform: rotateY(0deg);
-  }
-  45%,
-  75% {
-    transform: rotateY(180deg);
-  }
-  90%,
-  100% {
-    transform: rotateY(360deg);
   }
 }
 
