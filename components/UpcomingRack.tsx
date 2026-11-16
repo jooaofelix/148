@@ -19,6 +19,11 @@ const IMAGE_TOP_OFFSET = HANGER_HEIGHT - IMAGE_OVERLAP;
 /** Two copies is enough since the rack only ever advances forward. */
 const COPIES = 2;
 
+/** Background-removed version of a product photo, pre-generated into /cutout. */
+function cutout(src: string): string {
+  return src.replace("/images/products/", "/images/products/cutout/");
+}
+
 /** A bare wire-hanger silhouette — hooks onto the rail, the garment hangs from its shoulders. */
 function Hanger({ className = "", style }: { className?: string; style?: CSSProperties }) {
   return (
@@ -55,22 +60,22 @@ function RackItem({ product, flipDelay }: RackItemProps) {
         style={{ height: HANGER_HEIGHT, width: HANGER_HEIGHT * 1.4 }}
       />
       <div
-        className="relative aspect-[4/5] bg-ink-soft"
+        className="relative aspect-[4/5]"
         style={{ marginTop: -IMAGE_OVERLAP, perspective: "1400px" }}
       >
         <div
-          className={`absolute inset-0 ${canFlip ? "animate-shirt-flip hover:[animation-play-state:paused]" : ""}`}
+          className={`absolute inset-0 drop-shadow-[0_12px_28px_rgba(0,0,0,0.55)] ${canFlip ? "animate-shirt-flip hover:[animation-play-state:paused]" : ""}`}
           style={{ transformStyle: "preserve-3d", animationDelay: canFlip ? flipDelay : undefined }}
         >
-          <div className="absolute inset-0 overflow-hidden" style={{ backfaceVisibility: "hidden" }}>
-            <SmartImage src={product.images.front} alt={`${product.name} — frente`} sizes={`${ITEM_WIDTH}px`} />
+          <div className="absolute inset-0" style={{ backfaceVisibility: "hidden" }}>
+            <SmartImage src={cutout(product.images.front)} alt={`${product.name} — frente`} sizes={`${ITEM_WIDTH}px`} fit="contain" />
           </div>
           {canFlip && (
             <div
-              className="absolute inset-0 overflow-hidden"
+              className="absolute inset-0"
               style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
             >
-              <SmartImage src={product.images.back!} alt={`${product.name} — verso`} sizes={`${ITEM_WIDTH}px`} />
+              <SmartImage src={cutout(product.images.back!)} alt={`${product.name} — verso`} sizes={`${ITEM_WIDTH}px`} fit="contain" />
             </div>
           )}
         </div>

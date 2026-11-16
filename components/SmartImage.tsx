@@ -11,6 +11,8 @@ interface SmartImageProps {
   tone?: "ink" | "paper";
   sizes?: string;
   priority?: boolean;
+  /** "cover" (default) fills the frame and crops; "contain" fits the whole image, e.g. for background-less cutouts. */
+  fit?: "cover" | "contain";
 }
 
 /**
@@ -26,6 +28,7 @@ export function SmartImage({
   tone = "ink",
   sizes = "100vw",
   priority = false,
+  fit = "cover",
 }: SmartImageProps) {
   const [errored, setErrored] = useState(false);
 
@@ -40,7 +43,7 @@ export function SmartImage({
       fill
       sizes={sizes}
       priority={priority}
-      className={`object-cover ${className}`}
+      className={`${fit === "cover" ? "object-cover" : "object-contain"} ${className}`}
       onError={() => setErrored(true)}
     />
   );
